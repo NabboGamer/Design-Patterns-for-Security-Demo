@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+    <!-- Collego il file CSS per la pagina di login -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="login-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+        <label for="username"></label><input type="text" id="username" placeholder="👤 Username" required />
+        <label for="password"></label><input type="password" id="password" placeholder="🔑 Password" required />
+        <button type="submit">Accedi</button>
+    </form>
+    <p class="error-message" id="errorMessage">Credenziali non valide.</p>
+</div>
+<!-- Collego il file JavaScript per il login -->
+<script src="js/login.js"></script>
+</body>
+</html>

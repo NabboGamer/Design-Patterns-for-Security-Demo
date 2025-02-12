@@ -1,0 +1,71 @@
+/* Reset globale e impostazione del box-sizing */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    background-image: url('../images/background.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Container del form di login */
+.login-container {
+    width: 100%;
+    max-width: 600px;
+    background-color: rgba(255, 255, 255, 0.90);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* Stile per il titolo */
+.login-container h2 {
+    margin-bottom: 20px;
+}
+
+/* Stile per gli input */
+.login-container input[type="text"],
+.login-container input[type="password"] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Stile per il bottone */
+.login-container button {
+    width: 100%;
+    padding: 12px;
+    background-color: #054B90;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.login-container button:hover {
+    background-color: #054B90;
+}
+
+/* Stile per il messaggio di errore */
+.error-message {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+    display: none;
+}
