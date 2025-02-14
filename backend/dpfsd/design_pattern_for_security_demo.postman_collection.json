@@ -8,7 +8,7 @@
 	},
 	"item": [
 		{
-			"name": "Get data",
+			"name": "health",
 			"event": [
 				{
 					"listen": "test",
@@ -40,7 +40,7 @@
 			"response": []
 		},
 		{
-			"name": "Post data",
+			"name": "login",
 			"event": [
 				{
 					"listen": "test",
@@ -51,7 +51,8 @@
 							"});",
 							""
 						],
-						"type": "text/javascript"
+						"type": "text/javascript",
+						"packages": {}
 					}
 				}
 			],
@@ -59,21 +60,28 @@
 				"method": "POST",
 				"header": [],
 				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "user1",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
 						}
-					}
+					]
 				},
 				"url": {
-					"raw": "{{base_url}}/info",
+					"raw": "{{base_url}}/auth/login",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"info"
+						"auth",
+						"login"
 					]
 				},
 				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."

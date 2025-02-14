@@ -1,15 +1,16 @@
 services:
 
   postgres:
-    image: postgres:15
+    image: postgres:14.0
     container_name: dpfsd-postgres
     environment:
       POSTGRES_DB: dpfsd
       POSTGRES_USER: utenteDev
       POSTGRES_PASSWORD: passwordDev
     ports:
-      - "5432:5432"
+      - "54320:5432"
     volumes:
       - ./init-scripts:/docker-entrypoint-initdb.d:ro
       - ./data:/var/lib/postgresql/data
     network_mode: bridge
+    restart: always

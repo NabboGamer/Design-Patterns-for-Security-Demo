@@ -9,12 +9,12 @@ import lombok.*;
 @ToString
 public class User {
 
-    private String id;
+    //private String id;
     private String username;
     private String password;
 
     public User(String username, String password) {
-        this.id = IdGenerator.generate(15);
+        //this.id = IdGenerator.generate(15);
         this.username = username;
         this.password = password;
     }

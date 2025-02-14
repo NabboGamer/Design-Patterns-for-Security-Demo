@@ -10,9 +10,9 @@ public class DAOUserSQL implements IDAOUser {
 
     public DAOUserSQL() throws SQLException {
         conn = DriverManager.getConnection(
-                "jdbc:postgresql://localhost:5432/dpfsd",
-                "utenteDev",
-                "passwordDev"
+                "jdbc:postgresql://localhost:54320/dpfsd",
+                "appuser",
+                "appPassword"
         );
     }
 

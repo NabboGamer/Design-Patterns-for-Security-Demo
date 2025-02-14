@@ -8,11 +8,16 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
+import java.util.Arrays;
 
 @Path("/auth")
 public class AuthResource {
+
+    private static final Logger logger = LoggerFactory.getLogger(AuthResource.class);
     private final IAuthService authService;
 
     public AuthResource() {
@@ -26,16 +31,24 @@ public class AuthResource {
     public AuthResource(IAuthService authService) {
         this.authService = authService;
     }
+
     @POST
     @Path("/login")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public Response login(@FormParam("username") String username, @FormParam("password") String password) {
         try {
+            if(username == null || username.isBlank()) {
+                return Response.status(400).entity("Username obbligatorio").build();
+            }
+            if(password == null || password.isBlank()) {
+                return Response.status(400).entity("Password obbligatoria").build();
+            }
             if (authService.login(username, password)) {
                 return Response.ok("Accesso consentito").build();
             }
             return Response.status(401).entity("Accesso negato").build();
-        } catch (SQLException e) {
+        } catch (Exception e) {
+            logger.error("Errore durante l'autenticazione", e);
             return Response.serverError().build();
         }
     }
