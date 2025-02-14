@@ -23,6 +23,9 @@ public class AuthResource {
         }
     }
 
+    public AuthResource(IAuthService authService) {
+        this.authService = authService;
+    }
     @POST
     @Path("/login")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
