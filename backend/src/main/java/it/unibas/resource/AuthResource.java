@@ -43,12 +43,12 @@ public class AuthResource {
                 return Response.status(400).entity("Password obbligatoria").build();
             }
             if (authService.login(username, password)) {
-                return Response.ok("Accesso consentito").build();
+                return Response.status(200).entity("Accesso consentito").build();
             }
             return Response.status(401).entity("Accesso negato").build();
         } catch (Exception e) {
             logger.error("Errore durante l'autenticazione", e);
-            return Response.serverError().build();
+            return Response.status(500).entity("Errore durante l'autenticazione").build();
         }
     }
 }
