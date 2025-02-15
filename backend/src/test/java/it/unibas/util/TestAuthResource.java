@@ -26,7 +26,7 @@ public class TestAuthResource {
 
     @Test
     void testLoginSuccess() throws SQLException {
-        when(authService.login("user", "pass")).thenReturn(true);
+        //when(authService.login("user", "pass")).thenReturn(true);
 
         Response response = authResource.login("user", "pass");
 
@@ -37,7 +37,7 @@ public class TestAuthResource {
 
     @Test
     void testLoginFailure() throws SQLException {
-        when(authService.login("user", "pass")).thenReturn(false);
+        //when(authService.login("user", "pass")).thenReturn(false);
 
         Response response = authResource.login("user", "pass");
 

@@ -15,8 +15,8 @@ public class AuthService implements IAuthService {
     }
 
     @Override
-    public boolean login(String username, String password) throws SQLException {
+    public User login(String username, String password) throws SQLException {
         User user = daoUser.findByUsername(username);
-        return user != null && user.getPassword().equals(password);
+        return (user != null && user.getPassword().equals(password)) ? user : null;
     }
 }

@@ -1,11 +1,10 @@
 package it.unibas.resource;
 
+import it.unibas.model.ErrorMessage;
+import it.unibas.model.User;
 import it.unibas.service.AuthService;
 import it.unibas.service.IAuthService;
-import jakarta.ws.rs.Consumes;
-import jakarta.ws.rs.FormParam;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.slf4j.Logger;
@@ -34,21 +33,39 @@ public class AuthResource {
     @POST
     @Path("/login")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public Response login(@FormParam("username") String username, @FormParam("password") String password) {
+    public Response login(@FormParam("username") String username,
+                          @FormParam("password") String password) {
         try {
             if(username == null || username.isBlank()) {
-                return Response.status(400).entity("Username obbligatorio").build();
+                return buildErrorResponse(400, "Username obbligatorio");
             }
             if(password == null || password.isBlank()) {
-                return Response.status(400).entity("Password obbligatoria").build();
+                return buildErrorResponse(400, "Password obbligatoria");
             }
-            if (authService.login(username, password)) {
-                return Response.status(200).entity("Accesso consentito").build();
+
+            User user = authService.login(username, password);
+            if(user != null) {
+                return buildSuccessResponse(user);
             }
-            return Response.status(401).entity("Accesso negato").build();
+            return buildErrorResponse(401, "Credenziali non valide");
+
         } catch (Exception e) {
             logger.error("Errore durante l'autenticazione", e);
-            return Response.status(500).entity("Errore durante l'autenticazione").build();
+            return buildErrorResponse(500, "Errore interno del server");
         }
+    }
+
+    private Response buildSuccessResponse(User user) {
+        return Response.status(200)
+                .entity(user)
+                .type(MediaType.APPLICATION_JSON)
+                .build();
+    }
+
+    private Response buildErrorResponse(int status, String message) {
+        return Response.status(status)
+                .entity(new ErrorMessage(message))
+                .type(MediaType.APPLICATION_JSON)
+                .build();
     }
 }

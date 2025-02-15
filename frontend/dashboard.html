@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Utente</title>
+    <link rel="stylesheet" href="css/dashboard-style.css">
+</head>
+<body>
+<div class="dashboard-container">
+    <div class="dashboard-header">
+        <h1>Benvenuto <span id="fullName"></span></h1>
+        <button id="logoutButton" class="logout-btn">Esci</button>
+    </div>
+
+    <div class="user-profile">
+        <div class="user-info-card">
+            <h2>Riepilogo informazioni utente</h2>
+            <div class="info-group">
+                <label>Username:</label>
+                <span id="username" class="info-value"></span>
+            </div>
+            <div class="info-group">
+                <label>Email:</label>
+                <span id="userEmail" class="info-value"></span>
+            </div>
+            <div class="info-group">
+                <label>Ultimo accesso:</label>
+                <span id="lastLogin" class="info-value"></span>
+            </div>
+            <div class="info-group">
+                <label>Ruolo:</label>
+                <span id="userRole" class="info-value"></span>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

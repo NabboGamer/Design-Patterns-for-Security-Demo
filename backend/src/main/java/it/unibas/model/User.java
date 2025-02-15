@@ -1,6 +1,6 @@
 package it.unibas.model;
 
-import it.unibas.util.IdGenerator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 @Setter
@@ -9,12 +9,11 @@ import lombok.*;
 @ToString
 public class User {
 
-    //private String id;
     private String username;
+    @JsonIgnore
     private String password;
 
     public User(String username, String password) {
-        //this.id = IdGenerator.generate(15);
         this.username = username;
         this.password = password;
     }

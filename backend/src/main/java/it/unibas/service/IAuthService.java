@@ -1,7 +1,9 @@
 package it.unibas.service;
 
+import it.unibas.model.User;
+
 import java.sql.SQLException;
 
 public interface IAuthService {
-    boolean login(String username, String password) throws SQLException;
+    User login(String username, String password) throws SQLException;
 }
