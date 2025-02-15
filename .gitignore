@@ -44,5 +44,4 @@ nb-configuration.xml
 .certs/
 
 # My Specific Files
-backend/dpfsd/docker/postgres/data
-
+backend/docker/postgres/data
