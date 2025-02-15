@@ -34,12 +34,12 @@
 						"health"
 					]
 				},
-				"description": "Questo è un classica richiesta GET che permette di verificare se il server è in funzione.  \n\nUna richiesta che va a buon fine tipicamente ritorna 200 OK e il testo \"UP\"."
+				"description": "Questa è una classica richiesta GET che permette di verificare se il server è in funzione.\n\nUna richiesta che va a buon fine tipicamente ritorna 200 OK e il testo \"UP\"."
 			},
 			"response": []
 		},
 		{
-			"name": "login",
+			"name": "login SQL Injection",
 			"event": [
 				{
 					"listen": "test",
@@ -83,7 +83,44 @@
 						"login"
 					]
 				},
-				"description": "Questa è un richiesta POST che permette di effettuare SQL injection, grazie al body specificato sotto.  \n  \nLa prima richiesta fallirà ma cambierà tutte le password del DB degli utenti al valore \"ciao\". La seconda richiesta infine riuscirà a passare la fase di autenticazione, senza conoscere nessun nome utente e nemmeno nessuna password. L'unico prerequisito è la conoscenza del nome della tabella degli utenti che però è facilmente ricavabile."
+				"description": "Questa è un richiesta POST che permette di effettuare SQL injection, grazie al body specificato sotto.\n\nLa prima richiesta fallirà ma cambierà tutte le password del DB degli utenti al valore \"ciao\". La seconda richiesta infine riuscirà a passare la fase di autenticazione, senza conoscere nessun nome utente e nemmeno nessuna password. L'unico prerequisito è la conoscenza del nome della tabella degli utenti che però è facilmente ricavabile.\n\nUna richiesta che va a buon fine tipicamente ritorna 200 OK e nel body della risposta il file JSON con i dati(tranne quelli sensibili) dell'utente autenticato."
+			},
+			"response": []
+		},
+		{
+			"name": "login normal",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "user1",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/auth/login",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				},
+				"description": "Questa è un richiesta POST che permette di effettuare un normale login.\n\nUna richiesta che va a buon fine tipicamente ritorna 200 OK e nel body della risposta il file JSON con i dati(tranne quelli sensibili) dell'utente autenticato."
 			},
 			"response": []
 		}
