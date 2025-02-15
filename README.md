@@ -1,6 +1,6 @@
-# Prova Intercorso Tecniche Avanzata di Programmazione
+# Design Patterns for Security Demo
 
-Repository del progetto sviluppato per la prova intercorso del corso di Tecniche Avanzata di Programmazione, edizione 2024-2025, Università degli Studi della Basilicata, laurea magistrale in Ingegneria informatica e delle tecnologie dell'informazione.
+Repository del progetto "Design Patterns for Security Demo" sviluppato per la prova intercorso del corso di Tecniche Avanzata di Programmazione, edizione 2024-2025, Università degli Studi della Basilicata, laurea magistrale in Ingegneria informatica e delle tecnologie dell'informazione.
 
 ### **License**
 
