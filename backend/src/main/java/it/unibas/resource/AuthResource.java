@@ -34,6 +34,7 @@ public class AuthResource {
     @POST
     @Path("/login")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response login(@FormParam("username") String username,
                           @FormParam("password") String password) {
         try {
@@ -46,7 +47,7 @@ public class AuthResource {
 
             UserDTO userDTO = authService.login(username, password);
             if (userDTO != null) {
-                return Response.status(200).entity(userDTO).build();
+                return buildSuccessResponse(userDTO);
             }
             return buildErrorResponse(401, "Credenziali non valide");
 
@@ -56,9 +57,9 @@ public class AuthResource {
         }
     }
 
-    private Response buildSuccessResponse(User user) {
+    private Response buildSuccessResponse(UserDTO userDTO) {
         return Response.status(200)
-                .entity(user)
+                .entity(userDTO)
                 .type(MediaType.APPLICATION_JSON)
                 .build();
     }
