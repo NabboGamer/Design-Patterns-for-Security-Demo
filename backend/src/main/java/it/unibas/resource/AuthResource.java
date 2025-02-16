@@ -1,5 +1,6 @@
 package it.unibas.resource;
 
+import it.unibas.dto.UserDTO;
 import it.unibas.model.ErrorMessage;
 import it.unibas.model.User;
 import it.unibas.service.AuthService;
@@ -43,9 +44,9 @@ public class AuthResource {
                 return buildErrorResponse(400, "Password obbligatoria");
             }
 
-            User user = authService.login(username, password);
-            if(user != null) {
-                return buildSuccessResponse(user);
+            UserDTO userDTO = authService.login(username, password);
+            if (userDTO != null) {
+                return Response.status(200).entity(userDTO).build();
             }
             return buildErrorResponse(401, "Credenziali non valide");
 

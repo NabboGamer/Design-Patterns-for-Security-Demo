@@ -28,7 +28,13 @@ public class DAOUserSQL implements IDAOUser {
 
         if (rs.next()) {
             //logger.info("ResultSet: " + rs.getString("username") + " with Password: " + rs.getString("password"));
-            return new User(rs.getString("username"), rs.getString("password"));
+            return new User(rs.getString("username"),
+                            rs.getString("password"),
+                            rs.getString("name"),
+                            rs.getString("surname"),
+                            rs.getString("level"),
+                            rs.getString("companyIdentificationCode"),
+                            rs.getString("image"));
         }
         return null;
     }

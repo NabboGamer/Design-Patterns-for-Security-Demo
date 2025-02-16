@@ -2,6 +2,8 @@ package it.unibas.service;
 
 import it.unibas.dao.DAOUserSQL;
 import it.unibas.dao.IDAOUser;
+import it.unibas.dto.UserDTO;
+import it.unibas.mapper.UserMapper;
 import it.unibas.model.User;
 
 import java.sql.SQLException;
@@ -15,8 +17,11 @@ public class AuthService implements IAuthService {
     }
 
     @Override
-    public User login(String username, String password) throws SQLException {
+    public UserDTO login(String username, String password) throws SQLException {
         User user = daoUser.findByUsername(username);
-        return (user != null && user.getPassword().equals(password)) ? user : null;
+        if (user != null && user.getPassword().equals(password)) {
+            return UserMapper.toDTO(user);
+        }
+        return null;
     }
 }

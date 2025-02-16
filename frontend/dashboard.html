@@ -14,27 +14,39 @@
     </div>
 
     <div class="user-profile">
+        <div class="profile-picture">
+            <img id="userImage" alt="Immagine profilo">
+        </div>
+
         <div class="user-info-card">
             <h2>Riepilogo informazioni utente</h2>
             <div class="info-group">
-                <label>Username:</label>
-                <span id="username" class="info-value"></span>
+                <label>Nome:</label>
+                <span id="userName" class="info-value"></span>
             </div>
             <div class="info-group">
-                <label>Email:</label>
-                <span id="userEmail" class="info-value"></span>
+                <label>Cognome:</label>
+                <span id="userSurname" class="info-value"></span>
             </div>
             <div class="info-group">
-                <label>Ultimo accesso:</label>
-                <span id="lastLogin" class="info-value"></span>
+                <label>Livello:</label>
+                <span id="userLevel" class="info-value"></span>
             </div>
             <div class="info-group">
-                <label>Ruolo:</label>
-                <span id="userRole" class="info-value"></span>
+                <label>CIA:</label>
+                <span id="userCompanyIdentificationCode" class="info-value"></span>
             </div>
         </div>
     </div>
+
+    <div class="barcode-section">
+        <h2>Barcode</h2>
+        <div class="barcode-wrapper">
+            <canvas id="barcode"></canvas>
+        </div>
+    </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.5/JsBarcode.all.min.js"></script>
 <script src="js/dashboard.js"></script>
 </body>
 </html>

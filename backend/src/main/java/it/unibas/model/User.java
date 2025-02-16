@@ -1,21 +1,20 @@
 package it.unibas.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 @Setter
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 @ToString
 public class User {
 
     private String username;
-    @JsonIgnore
     private String password;
-
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
+    private String name;
+    private String surname;
+    private String level;
+    private String companyIdentificationCode;
+    private String image;
 
 }
