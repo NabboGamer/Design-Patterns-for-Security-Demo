@@ -60,14 +60,12 @@ public class AuthResource {
     private Response buildSuccessResponse(UserDTO userDTO) {
         return Response.status(200)
                 .entity(userDTO)
-                .type(MediaType.APPLICATION_JSON)
                 .build();
     }
 
     private Response buildErrorResponse(int status, String message) {
         return Response.status(status)
                 .entity(new ErrorMessage(message))
-                .type(MediaType.APPLICATION_JSON)
                 .build();
     }
 }
