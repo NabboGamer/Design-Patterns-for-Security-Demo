@@ -46,3 +46,4 @@ nb-configuration.xml
 # My Specific Files
 backend/docker/postgres/data
 backend/src/main/resources/application-dev.properties
+secure-backend/docker/postgres/data
