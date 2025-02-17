@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
             format: "CODE128",         // Formato del barcode
             displayValue: false,       // Mostra il valore testuale
             fontSize: 16,              // Dimensione del testo
-            lineColor: "#000000",      // Colore delle linee
+            lineColor: "#2c3e50",      // Colore delle linee
             width: 4,                  // Spessore delle linee
             height: 80                 // Altezza del barcode
         });
