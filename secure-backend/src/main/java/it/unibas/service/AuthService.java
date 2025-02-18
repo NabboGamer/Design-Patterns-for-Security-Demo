@@ -7,8 +7,6 @@ import it.unibas.mapper.UserMapper;
 import it.unibas.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import javax.security.auth.login.AccountLockedException;
 import java.sql.SQLException;
 
 public class AuthService implements IAuthService {
@@ -21,8 +19,14 @@ public class AuthService implements IAuthService {
     }
 
     @Override
-    public UserDTO login(String username, String password) throws SQLException, AccountLockedException {
-        User user = daoUser.findByUsername(username);
+    public UserDTO login(String username, String password) throws SQLException {
+        User user;
+        try{
+            user = daoUser.findByUsername(username);
+        } catch (SQLException sqlException){
+            logger.error("Errore con la connessione al DB", sqlException);
+            throw new SQLException("Errore interno al server durante l'autenticazione");
+        }
         if (user != null && user.getPassword().equals(password)) {
             return UserMapper.toDTO(user);
         }

@@ -49,8 +49,7 @@ public class AuthResource {
             return buildErrorResponse(401, "Credenziali non valide");
 
         } catch (SQLException sqlException) {
-            logger.error("Errore interno al server durante l'autenticazione", sqlException);
-            return buildErrorResponse(500, "Errore interno al server durante l'autenticazione");
+            return buildErrorResponse(500, sqlException.getMessage());
         } catch (AccountLockedException accountLockedException) {
             return buildErrorResponse(403, accountLockedException.getMessage());
         }
