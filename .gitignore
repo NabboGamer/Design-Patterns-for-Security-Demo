@@ -48,3 +48,4 @@ backend/docker/postgres/data
 backend/src/main/resources/application-dev.properties
 secure-backend/docker/postgres/data
 secure-backend/src/main/resources/application-dev.properties
+secure-backend/src/main/resources/application-dev.properties

@@ -101,7 +101,7 @@ public class EncryptionContext {
 
 <div style="page-break-before: always;"></div>
 
-## 3. Injection (OWASP A03:2021)
+## 3. Injection (OWASP A03:2021) ✔️
 
 ### **Pattern: DAO (Data Access Object) con Prepared Statement**
 
@@ -154,7 +154,7 @@ _**~~I have no fucking idea...~~**_
 
 <div style="page-break-before: always;"></div>
 
-## 7. Identification and Authentication Failures (OWASP A07:2021)
+## 7. Identification and Authentication Failures (OWASP A07:2021) ✔️
 
 ### **Pattern: Decorator**
 
@@ -274,7 +274,7 @@ public class UpdateDataCommand implements Command {
 
 <div style="page-break-before: always;"></div>
 
-## 9. Security Logging and Monitoring Failures (OWASP A09:2021)
+## 9. Security Logging and Monitoring Failures (OWASP A09:2021) ✔️
 
 ### **Pattern: Observer**
 

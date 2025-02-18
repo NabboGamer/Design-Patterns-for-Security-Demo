@@ -1,1 +1,2 @@
 app.image.base-dir=/absolute/path/to/the/image/location
+app.log.base-dir=/absolute/path/to/the/logging/journal/file
