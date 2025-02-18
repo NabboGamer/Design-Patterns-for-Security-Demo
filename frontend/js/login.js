@@ -26,8 +26,10 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
             'password': password
         })
     }).then(response => {
-        if (response.status === 401 || response.status === 403) { // Errori specifici di autenticazione
+        if (response.status === 401 ) { // Errori specifici di autenticazione
             throw new Error('CREDENTIALS_ERROR');
+        } else if (response.status === 403){
+            throw new Error('ACCOUNT_LOCKED_ERROR');
         } else if (response.status >= 500) { // Errori server
             throw new Error('SERVER_ERROR');
         } else if (!response.ok) { // Altri errori generici
@@ -63,6 +65,7 @@ document.querySelectorAll('#loginForm input').forEach(input => {
 function getErrorMessage(errorType) {
     const messages = {
         'CREDENTIALS_ERROR': 'Credenziali non valide!',
+        'ACCOUNT_LOCKED_ERROR': 'Account bloccato.',
         'SERVER_ERROR': 'Errore interno del server. Riprova più tardi.',
         'NETWORK_ERROR': 'Errore di connessione. Verifica la tua rete.',
         'GENERIC_ERROR': 'Si è verificato un errore. Riprova.',

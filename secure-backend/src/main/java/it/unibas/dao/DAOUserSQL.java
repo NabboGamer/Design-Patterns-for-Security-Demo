@@ -30,12 +30,12 @@ public class DAOUserSQL implements IDAOUser {
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     return new User(rs.getString("username"),
-                            rs.getString("password"),
-                            rs.getString("name"),
-                            rs.getString("surname"),
-                            rs.getString("level"),
-                            rs.getString("companyIdentificationCode"),
-                            rs.getString("image"));
+                                    rs.getString("password"),
+                                    rs.getString("name"),
+                                    rs.getString("surname"),
+                                    rs.getString("level"),
+                                    rs.getString("companyIdentificationCode"),
+                                    rs.getString("image"));
                 }
             }
         }
