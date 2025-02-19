@@ -3,6 +3,7 @@ package it.unibas.resource;
 import it.unibas.dto.UserDTO;
 import it.unibas.model.ErrorMessage;
 import it.unibas.service.*;
+import it.unibas.service.observer.ISecurityEventObserver;
 import it.unibas.service.observer.SecurityLogger;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;

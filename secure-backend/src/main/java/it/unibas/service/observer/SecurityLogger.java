@@ -1,13 +1,10 @@
 package it.unibas.service.observer;
 
-import it.unibas.resource.AuthResource;
-import it.unibas.service.ISecurityEventObserver;
 import it.unibas.service.SecurityEventManager;
 import org.eclipse.microprofile.config.ConfigProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;

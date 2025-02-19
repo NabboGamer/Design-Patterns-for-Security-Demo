@@ -1,5 +1,6 @@
 package it.unibas.service;
 
+import it.unibas.service.observer.ISecurityEventObserver;
 import lombok.Getter;
 
 import java.util.ArrayList;
