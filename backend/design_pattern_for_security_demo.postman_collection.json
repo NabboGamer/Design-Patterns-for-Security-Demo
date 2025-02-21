@@ -123,6 +123,49 @@
 				"description": "Questa è un richiesta POST che permette di effettuare un normale login.\n\nUna richiesta che va a buon fine tipicamente ritorna 200 OK e nel body della risposta il file JSON con i dati(tranne quelli sensibili) dell'utente autenticato."
 			},
 			"response": []
+		},
+		{
+			"name": "dashboard edit name",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "mario.rossi",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Mariottide",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/dashboard/edit/name",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"dashboard",
+						"edit",
+						"name"
+					]
+				},
+				"description": "Questa è un richiesta POST che permette di effettuare un normale login.\n\nUna richiesta che va a buon fine tipicamente ritorna 200 OK e nel body della risposta il file JSON con i dati(tranne quelli sensibili) dell'utente autenticato."
+			},
+			"response": []
 		}
 	],
 	"event": [

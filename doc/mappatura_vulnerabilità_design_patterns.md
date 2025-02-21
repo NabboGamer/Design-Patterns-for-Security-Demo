@@ -2,7 +2,8 @@
 
 Nel seguito viene presentata una possibile mappatura tra alcune delle vulnerabilità individuate dagli standard OWASP Top 10 2021 (integrate, ove possibile, con le “Linee Guida per lo sviluppo sicuro” di AGID in Java) e alcuni Design Pattern che, se applicati correttamente, possono aiutare a mitigare o risolvere tali problematiche. È importante sottolineare che i pattern da soli non garantiscono la sicurezza, ma vanno integrati in un approccio di _security by design_ e _defense in depth_.
 
-## 1. Broken Access Control (OWASP A01:2021)
+## 1. Broken Access Control (OWASP A01:2021) 
+<font color="#2dd55b">LUNGO FATTIBILE(CI VOGLIONO PESANTI MODIFICHE FE/BE): Potrei utilizzarlo per distinguere uno schermo di modifica dei dati dell'utente normale da quello dell'utente admin. Richiederebbe la creazione di uno schermo in cui ambo gli utenti possono fare delle modifiche, magari la dashboard potrebbe permettere la modifica tramite una matita di alcuni campi soggetti a variazione tipo email e indirizzo di residenza, solo che alcune modifiche sono riservate agli admin, tipo il livello, utile in caso di promozione del dipendente. In questo modo si eviterebbe che ad esempio un attaccante possa modificare un campo che non gli è permesso, compilando una richiesta adhoc con postman, questo tentativo di attacco verrebbe bloccato dal fatto che la modifica al campo sia sottoposta al proxy prima della vera azione e in caso negativo verrebbe lanciata eccezione.</font>
 
 ### **Pattern: Proxy**
 
@@ -50,7 +51,8 @@ public class SensitiveServiceProxy implements ISensitiveService {
 
 <div style="page-break-before: always;"></div>
 
-## 2. Cryptographic Failures (OWASP A02:2021)
+## 2. Cryptographic Failures (OWASP A02:2021) 
+<font color="#2dd55b">DIFFICILMENTE FATTIBILE(CI VOGLIONO DIVERSE MODIFICHE FE/BE, BISOGNA VERIFICARE CHE LA TECNICA DI PENETRAZIONE PROPOSTA SIA ATTUABILE): Potrei utilizzarlo per introdurre e permettere di cambiare in maniera flessibile l'algoritmo di hashing delle password da salvare sul DB. Richiederebbe l'introduzione di uno schermo di registrazione in modo che la password venga hashata dal BE con un salt stabilito e al momento di hash della password per l'inserimento e al momento della verifica di quest'ultima permetterebbe di hasharle con diversi algoritmi. Dovrei poi introdurre l'hashing delle password anche nel BE insicuro in maniera harcoded,senza salt e con un algoritmo di hashing debole. Poi bisognerebbe cercare di entrare tramite la tecnica delle Rainbow table.</font>
 
 ### **Pattern: Strategy**
 
@@ -136,19 +138,19 @@ public class UserDao {
 
 <div style="page-break-before: always;"></div>
 
-## 4. Insecure Design (OWASP A04:2021)
+## 4. Insecure Design (OWASP A04:2021) ❌
 
 _**~~I have no fucking idea...~~**_
 
 <br/><br/>
 
-## 5. Security Misconfiguration (OWASP A05:2021)
+## 5. Security Misconfiguration (OWASP A05:2021) ❌
 
 _**~~I have no fucking idea...~~**_
 
 <br/><br/>
 
-## 6. Vulnerable and Outdated Components (OWASP A06:2021)
+## 6. Vulnerable and Outdated Components (OWASP A06:2021) ❌
 
 _**~~I have no fucking idea...~~**_
 
@@ -238,39 +240,9 @@ public class EnhancedAuthenticationDecorator implements AuthenticationService {
 
 <div style="page-break-before: always;"></div>
 
-## 8. Software and Data Integrity Failures (OWASP A08:2021)
+## 8. Software and Data Integrity Failures (OWASP A08:2021) ❌
 
-### **Pattern: Command**
-
-**Descrizione:**  
-Il **Command Pattern** incapsula una richiesta (o operazione) come un oggetto, permettendo di implementare meccanismi di audit, logging e controlli di integrità su ciascuna operazione eseguita. In questo modo è possibile verificare che le operazioni siano autorizzate e tracciate.
-
-**Esempio di codice (concettuale):**
-
-```java
-// Interfaccia per il comando
-public interface Command {
-    void execute();
-}
-
-// Implementazione concreta di un comando
-public class UpdateDataCommand implements Command {
-    private DataReceiver receiver;
-    private String newData;
-    
-    public UpdateDataCommand(DataReceiver receiver, String newData) {
-        this.receiver = receiver;
-        this.newData = newData;
-    }
-    
-    @Override
-    public void execute() {
-        // Logica per aggiornare i dati, includendo eventualmente controlli di integrità
-        receiver.update(newData);
-        // Possibile logging dell'operazione
-    }
-}
-```
+_**~~I have no fucking idea...~~**_
 
 <div style="page-break-before: always;"></div>
 
@@ -315,7 +287,8 @@ public class SecurityEventManager {
 
 <div style="page-break-before: always;"></div>
 
-## 10. Server-Side Request Forgery (SSRF) (OWASP A10:2021)
+## 10. Server-Side Request Forgery (SSRF) (OWASP A10:2021) 
+<font color="#2dd55b">DIFFICILMENTE FATTIBILE(CI VOGLIONO PESANTI MODIFICHE FE/BE): Bisognerebbe introdurre nell'applicazione una feature che richieda il download di una risorsa dal web, come ad esempio una immagine, ma soprattuto a livello di FE è parecchio al di fuori delle mie capacità</font>
 
 ### **Pattern: Adapter**
 
@@ -376,12 +349,12 @@ graph TD
         A02[Cryptographic Failures A02]
         A03[Injection A03]
         A04[Insecure Design A04]
-        A05[Security Misconfiguration A05]
-        A06[Vulnerable \& Outdated Components A06]
-        A07[Identification \& Authentication Failures A07]
-        A08[Software \& Data Integrity Failures A08]
-        A09[Security Logging \& Monitoring Failures A09]
-        A10[SSRF A10]
+        A05[Security <br /> Misconfiguration A05]
+        A06[Vulnerable &<br /> Outdated Components A06]
+        A07[Identification &<br /> Authentication Failures A07]
+        A08[Software &<br /> Data Integrity Failures A08]
+        A09[Security Logging &<br /> Monitoring Failures A09]
+        A10[Server-Side <br /> Request Forgery A10]
     end
 
     %% Sottosezione Design Patterns
@@ -391,7 +364,6 @@ graph TD
         DP2[Strategy]
         DP3[DAO con Prepared Statement]
         DP4[Decorator]
-        DP5[Command]
         DP6[Observer]
         DP7[Adapter]
     end
@@ -407,7 +379,6 @@ graph TD
     A02 --> DP2
     A03 --> DP3
     A07 --> DP4
-    A08 --> DP5
     A09 --> DP6
     A10 --> DP7
 
@@ -415,5 +386,6 @@ graph TD
     A04 -.-> NM
     A05 -.-> NM
     A06 -.-> NM
+    A08 -.-> NM
 
 ```
