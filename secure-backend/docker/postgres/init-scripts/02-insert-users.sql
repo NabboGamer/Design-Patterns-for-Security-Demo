@@ -7,7 +7,7 @@ VALUES ('luigi.bianchi','1234', 'USER','Luigi', 'Bianchi', 'CAPO_REPARTO', 'kJ4h
     ON CONFLICT (username) DO NOTHING;
 
 INSERT INTO users (username, password, "role", "name", "surname", "level", "companyIdentificationCode", "image", "email", "phone", "address")
-VALUES ('paolo.neri','5678', 'USER','Paolo', 'Neri', 'CAPO_SEZIONE', 'LypezC6bVkAVn6h', 'paolo.neri.jpeg', 'paolo.neri@gmail.com', '333888999', 'Discesa San Gerardo n.31, Potenza')
+VALUES ('paolo.neri','5678', 'ADMIN','Paolo', 'Neri', 'CAPO_SEZIONE', 'LypezC6bVkAVn6h', 'paolo.neri.jpeg', 'paolo.neri@gmail.com', '333888999', 'Discesa San Gerardo n.31, Potenza')
     ON CONFLICT (username) DO NOTHING;
 
 INSERT INTO users (username, password, "role", "name", "surname", "level", "companyIdentificationCode", "image", "email", "phone", "address")

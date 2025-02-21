@@ -1,6 +1,7 @@
 package it.unibas.resource;
 
 import it.unibas.dto.UserDTO;
+import it.unibas.exception.InsufficientPermissionException;
 import it.unibas.model.ErrorMessage;
 import it.unibas.service.*;
 import it.unibas.service.observer.ISecurityEventObserver;
@@ -59,6 +60,133 @@ public class DashboardResource {
         }
     }
 
+    @POST
+    @Path("/edit/surname")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response editUserSurname(@FormParam("username") String username,
+                                    @FormParam("password") String password,
+                                    @FormParam("surname")  String surname) {
+        try {
+            UserDTO userDTO = secureAuthService.login(username, password);
+            if (userDTO == null) {
+                throw new AuthenticationException();
+            }
+
+            UserDTO newUserDTO = dashboardEditServiceProxy.editUserSurname(username, password, userDTO, surname);
+
+            return buildSuccessResponse(newUserDTO);
+        } catch (AccountLockedException | AuthenticationException ex) {
+            return buildErrorResponse(401, "Credenziali non valide");
+        } catch (IllegalArgumentException illegalArgumentException) {
+            return buildErrorResponse(400, illegalArgumentException.getMessage());
+        } catch (SQLException sqlException) {
+            return buildErrorResponse(500, sqlException.getMessage());
+        }
+    }
+
+    @POST
+    @Path("/edit/email")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response editUserEmail(@FormParam("username") String username,
+                                  @FormParam("password") String password,
+                                  @FormParam("email")    String email) {
+        try {
+            UserDTO userDTO = secureAuthService.login(username, password);
+            if (userDTO == null) {
+                throw new AuthenticationException();
+            }
+
+            UserDTO newUserDTO = dashboardEditServiceProxy.editUserEmail(username, password, userDTO, email);
+
+            return buildSuccessResponse(newUserDTO);
+        } catch (AccountLockedException | AuthenticationException ex) {
+            return buildErrorResponse(401, "Credenziali non valide");
+        } catch (IllegalArgumentException illegalArgumentException) {
+            return buildErrorResponse(400, illegalArgumentException.getMessage());
+        } catch (SQLException sqlException) {
+            return buildErrorResponse(500, sqlException.getMessage());
+        }
+    }
+
+    @POST
+    @Path("/edit/phone")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response editUserPhone(@FormParam("username") String username,
+                                  @FormParam("password") String password,
+                                  @FormParam("phone")    String phone) {
+        try {
+            UserDTO userDTO = secureAuthService.login(username, password);
+            if (userDTO == null) {
+                throw new AuthenticationException();
+            }
+
+            UserDTO newUserDTO = dashboardEditServiceProxy.editUserPhone(username, password, userDTO, phone);
+
+            return buildSuccessResponse(newUserDTO);
+        } catch (AccountLockedException | AuthenticationException ex) {
+            return buildErrorResponse(401, "Credenziali non valide");
+        } catch (IllegalArgumentException illegalArgumentException) {
+            return buildErrorResponse(400, illegalArgumentException.getMessage());
+        } catch (SQLException sqlException) {
+            return buildErrorResponse(500, sqlException.getMessage());
+        }
+    }
+
+    @POST
+    @Path("/edit/address")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response editUserAddress(@FormParam("username") String username,
+                                    @FormParam("password") String password,
+                                    @FormParam("address")  String address) {
+        try {
+            UserDTO userDTO = secureAuthService.login(username, password);
+            if (userDTO == null) {
+                throw new AuthenticationException();
+            }
+
+            UserDTO newUserDTO = dashboardEditServiceProxy.editUserAddress(username, password, userDTO, address);
+
+            return buildSuccessResponse(newUserDTO);
+        } catch (AccountLockedException | AuthenticationException ex) {
+            return buildErrorResponse(401, "Credenziali non valide");
+        } catch (IllegalArgumentException illegalArgumentException) {
+            return buildErrorResponse(400, illegalArgumentException.getMessage());
+        } catch (SQLException sqlException) {
+            return buildErrorResponse(500, sqlException.getMessage());
+        }
+    }
+
+    @POST
+    @Path("/edit/level")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response editUserLevel(@FormParam("username") String username,
+                                  @FormParam("password") String password,
+                                  @FormParam("level")    String level) {
+        try {
+            UserDTO userDTO = secureAuthService.login(username, password);
+            if (userDTO == null) {
+                throw new AuthenticationException();
+            }
+
+            UserDTO newUserDTO = dashboardEditServiceProxy.editLevel(username, password, userDTO, level);
+
+            return buildSuccessResponse(newUserDTO);
+        } catch (AccountLockedException | AuthenticationException ex) {
+            return buildErrorResponse(401, "Credenziali non valide");
+        } catch (IllegalArgumentException illegalArgumentException) {
+            return buildErrorResponse(400, illegalArgumentException.getMessage());
+        } catch (SQLException sqlException) {
+            return buildErrorResponse(500, sqlException.getMessage());
+        } catch (InsufficientPermissionException insufficientPermissionException) {
+            return buildErrorResponse(403, insufficientPermissionException.getMessage());
+        }
+    }
+
     private Response buildSuccessResponse(UserDTO userDTO) {
         return Response.status(200)
                 .entity(userDTO)
@@ -70,54 +198,4 @@ public class DashboardResource {
                 .entity(new ErrorMessage(message))
                 .build();
     }
-
-//    @POST
-//    @Path("/edit/surname")
-//    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public Response editUserData(@FormParam("username") String username,
-//                                 @FormParam("password") String password,
-//                                 @FormParam("surname")  String surname) {
-//        try {
-//            UserDTO userDTO = secureAuthService.login(username, password);
-//            if (userDTO == null) {
-//                throw new AuthenticationException();
-//            }
-//
-//            // TODO: Inserire codice che permette di modificare il nome del dipendente.
-//            //       Nota che il Service che si occuperà di eseguire l'azione sarà un proxy, così effettuerà azioni
-//            //       di controllo dei permessi in caso di alcune modifiche come per quella della proprietà level.
-//            //       In questo caso non verificherà il ruolo dell'utente ma farà comunque delle verifiche sulla stringa(lunghezza, caratteri speciali, ecc.)
-//
-//
-//        } catch (AccountLockedException | SQLException  | AuthenticationException ex) {
-//            return Response.status(401)
-//                    .entity("Credenziali non valide")
-//                    .build();
-//        }
-//    }
-//
-//    @POST
-//    @Path("/edit/level")
-//    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public Response editUserData(@FormParam("username") String username,
-//                                 @FormParam("password") String password,
-//                                 @FormParam("level")    String level) {
-//        try {
-//            UserDTO userDTO = secureAuthService.login(username, password);
-//            if (userDTO == null) {
-//                throw new AuthenticationException();
-//            }
-//
-//            // TODO: Inserire codice che permette di modificare il level del dipendente.
-//            //       Nota che
-//
-//
-//        } catch (AccountLockedException | SQLException  | AuthenticationException ex) {
-//            return Response.status(401)
-//                    .entity("Credenziali non valide")
-//                    .build();
-//        }
-//    }
 }
