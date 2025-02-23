@@ -51,6 +51,35 @@ h2 {
     padding-bottom: 1rem;
 }
 
+.header-buttons {
+    display: flex;
+    gap: 1rem; /* Spaziatura tra i bottoni */
+}
+
+.logout-btn {
+    background: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.logout-btn:hover{
+    background: #2980b9;
+    transform: scale(1.05);
+}
+
+.user-info-card {
+    flex: 1;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
 .info-group {
     margin-bottom: 1rem;
     padding: 0.8rem;
@@ -88,12 +117,12 @@ h2 {
     border: 3px solid var(--secondary-color);
 }
 
-.user-info-card {
-    flex: 1;
-    padding: 1.5rem;
-    background: #f8f9fa;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
+.profile-picture img#userImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Mantiene le proporzioni e ritaglia l'immagine */
+    display: block; /* Rimuove lo spazio sotto l'immagine */
+    background: #f0f0f0; /* Sfondo di fallback durante il caricamento */
 }
 
 .barcode-section {
@@ -121,26 +150,17 @@ h2 {
     padding-right: 0;
 }
 
-.logout-btn {
-    background: var(--secondary-color);
-    color: white;
-    border: none;
-    padding: 0.8rem 1.5rem;
-    border-radius: 25px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: all 0.3s ease;
+.edit-input {
+    padding: 0.3rem;
+    border: 2px solid #054B90;
+    border-radius: 5px;
+    width: 200px;
+    font-family: inherit;
+    font-size: inherit;
 }
 
-.logout-btn:hover {
-    background: #2980b9;
-    transform: scale(1.05);
-}
-
-.profile-picture img#userImage {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Mantiene le proporzioni e ritaglia l'immagine */
-    display: block; /* Rimuove lo spazio sotto l'immagine */
-    background: #f0f0f0; /* Sfondo di fallback durante il caricamento */
+.edit-input:focus {
+    outline: none;
+    border-color: #2980b9;
+    box-shadow: 0 0 5px rgba(41, 128, 185, 0.5);
 }

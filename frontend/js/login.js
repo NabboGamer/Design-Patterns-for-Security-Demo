@@ -39,6 +39,7 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     }).then(data => {
         // Salvataggio dei dati utente nel localStorage
         localStorage.setItem('userData', JSON.stringify(data));
+        localStorage.setItem('userSecrets', JSON.stringify({ username, password }));
         // Redirect alla dashboard
         window.location.href = 'dashboard.html';
     }).catch(error => {
