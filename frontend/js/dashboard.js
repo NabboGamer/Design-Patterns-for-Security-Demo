@@ -13,7 +13,10 @@ document.addEventListener('DOMContentLoaded', function() {
         userSurname: document.getElementById('userSurname'),
         userLevel: document.getElementById('userLevel'),
         userCompanyIdentificationCode: document.getElementById('userCompanyIdentificationCode'),
-        userImage: document.getElementById('userImage')
+        userImage: document.getElementById('userImage'),
+        userEmail: document.getElementById('userEmail'),
+        userPhone: document.getElementById('userPhone'),
+        userAddress: document.getElementById('userAddress')
     };
 
     // Popolazione dati utente
@@ -21,6 +24,9 @@ document.addEventListener('DOMContentLoaded', function() {
     elements.userSurname.textContent = userData.surname || 'N/D';
     elements.userLevel.textContent = userData.level || 'N/D';
     elements.userCompanyIdentificationCode.textContent = userData.companyIdentificationCode || 'N/D';
+    elements.userEmail.textContent = userData.email || 'N/D';
+    elements.userPhone.textContent = userData.phone || 'N/D';
+    elements.userAddress.textContent = userData.address || 'N/D';
 
     // Caricamento immagine profilo da base64
     if (userData.image) {
@@ -41,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
             displayValue: false,       // Mostra il valore testuale
             fontSize: 16,              // Dimensione del testo
             lineColor: "#2c3e50",      // Colore delle linee
-            width: 4,                  // Spessore delle linee
+            width: 7,                  // Spessore delle linee
             height: 80                 // Altezza del barcode
         });
     }
