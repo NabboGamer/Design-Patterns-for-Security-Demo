@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class SecurityLogger implements ISecurityEventObserver {
 
@@ -29,5 +31,15 @@ public class SecurityLogger implements ISecurityEventObserver {
         } catch (IOException e) {
             logger.error(e.getMessage());
         }
+    }
+
+    public String buildLoggingString(String username, String action, String result) {
+        String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
+        StringBuilder sb = new StringBuilder();
+        sb.append("[").append(timestamp).append("]").append(" ")
+                .append("UTENTE:").append(username).append(" - ")
+                .append("EFFETTUA:").append(action).append(" - ")
+                .append("ESITO:").append(result).append("\n");
+        return sb.toString();
     }
 }

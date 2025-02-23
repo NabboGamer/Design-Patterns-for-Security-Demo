@@ -2,8 +2,7 @@
 
 Nel seguito viene presentata una possibile mappatura tra alcune delle vulnerabilità individuate dagli standard OWASP Top 10 2021 (integrate, ove possibile, con le “Linee Guida per lo sviluppo sicuro” di AGID in Java) e alcuni Design Pattern che, se applicati correttamente, possono aiutare a mitigare o risolvere tali problematiche. È importante sottolineare che i pattern da soli non garantiscono la sicurezza, ma vanno integrati in un approccio di _security by design_ e _defense in depth_.
 
-## 1. Broken Access Control (OWASP A01:2021) 
-<font color="#2dd55b">LUNGO FATTIBILE(CI VOGLIONO PESANTI MODIFICHE FE/BE): Potrei utilizzarlo per distinguere uno schermo di modifica dei dati dell'utente normale da quello dell'utente admin. Richiederebbe la creazione di uno schermo in cui ambo gli utenti possono fare delle modifiche, magari la dashboard potrebbe permettere la modifica tramite una matita di alcuni campi soggetti a variazione tipo email e indirizzo di residenza, solo che alcune modifiche sono riservate agli admin, tipo il livello, utile in caso di promozione del dipendente. In questo modo si eviterebbe che ad esempio un attaccante possa modificare un campo che non gli è permesso, compilando una richiesta adhoc con postman, questo tentativo di attacco verrebbe bloccato dal fatto che la modifica al campo sia sottoposta al proxy prima della vera azione e in caso negativo verrebbe lanciata eccezione.</font>
+## 1. Broken Access Control (OWASP A01:2021) ✔️
 
 ### **Pattern: Proxy**
 
