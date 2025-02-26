@@ -17,8 +17,8 @@ import static java.lang.Thread.sleep;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-class ATestuthServiceDecorator {
-    private static final Logger logger = LoggerFactory.getLogger(ATestuthServiceDecorator.class);
+class TestAuthServiceDecorator {
+    private static final Logger logger = LoggerFactory.getLogger(TestAuthServiceDecorator.class);
 
     @Mock
     private IAuthService authService;
@@ -70,16 +70,18 @@ class ATestuthServiceDecorator {
         assertTrue(thrown.getMessage().contains("Numero massimo di tentativi di login falliti raggiunto per l'account testuser"));
     }
 
- /**   @Test
+   @Test
     void testLogin_permanent_Lockout() throws SQLException, AccountLockedException, InterruptedException {
         when(authService.login("testuser", "wrongpassword")).thenReturn(null);
 
-        for (int i = 0; i < 21; i++) {
+        for (int i = 1; i < 25; i++) {
             try {
                 authServiceDecorator.login("testuser", "wrongpassword");
             } catch (AccountLockedException e) {}
-            if(i!=0 && i%5==0){
-                sleep(30000);
+            if(i != 0 && i%6==0){
+                int exp = (i/6) - 1;
+                logger.info("i {} - {} - {}", i, exp,  30000*Math.pow(2, exp));
+                sleep((long) (30000 * Math.pow(2, exp)));
             }
         }
 
@@ -89,7 +91,7 @@ class ATestuthServiceDecorator {
 
         assertTrue(thrown.getMessage().contains("Account bloccato permanentemente"));
     }
-**/
+
 
     @Test
     void testLogin_resets_after_success() throws SQLException, AccountLockedException {
