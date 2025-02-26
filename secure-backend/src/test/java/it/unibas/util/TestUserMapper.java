@@ -34,7 +34,7 @@ public class TestUserMapper {
     }
 
     @Test
-    void test_toDTO_whenUserIsValid() {
+    void test_toDTO_when_user_is_valid() {
         UserDTO dto = UserMapper.toDTO(user);
         assertNotNull(dto);
         assertEquals(user.getName(), dto.getName());
