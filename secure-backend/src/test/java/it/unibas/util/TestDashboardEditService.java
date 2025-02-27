@@ -29,7 +29,7 @@ class TestDashboardEditService {
     @BeforeEach
     void setUp() {
         daoUser = mock(DAOUserSQL.class);
-        dashboardEditService = new DashboardEditService(daoUser);
+        dashboardEditService = new DashboardEditService();
 
         userDTO = new UserDTO();
         userDTO.setName("OldName");

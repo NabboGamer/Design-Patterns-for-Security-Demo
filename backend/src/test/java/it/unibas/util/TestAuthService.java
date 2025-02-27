@@ -22,7 +22,7 @@ class TestAuthService {
     @BeforeEach
     void setUp() throws SQLException {
         daoUserMock = mock(DAOUserSQL.class);
-        authService = new AuthService(daoUserMock);
+        authService = new AuthService();
     }
 
     @Test
