@@ -2,8 +2,6 @@
 
 Repository del progetto "Design Patterns for Security Demo" sviluppato per la prova intercorso di Tecniche Avanzata di Programmazione, edizione 2024-2025, Università degli Studi della Basilicata, laurea magistrale in Ingegneria informatica e delle tecnologie dell'informazione.
 
----
-
 ## Introduzione
 
 La sicurezza delle applicazioni è un aspetto fondamentale nello sviluppo software, in particolare per le applicazioni che gestiscono dati sensibili e informazioni critiche. 
@@ -18,16 +16,12 @@ I metodi di testing impiegati e i risultati ottenuti, evidenziando i vantaggi de
 
 Per ulteriori informazioni consultare il [report](./doc/Relazione%20Progetto%20TAV.pdf) presente nella cartella di progetto dedicata alla documentazione.
 
----
-
-### **Galleria**
+## Galleria
 
 Schermo Login              |  Schermo Dashboard
 :-------------------------:|:-------------------------:
 ![](./doc/screenshots/screenshot_schermo_login.png)  |  ![](./doc/screenshots/screenshot_schermo_dashboard.png)
 
----
-
-### **License**
+## License
 
 Questo progetto è concesso in licenza con la licenza MIT, vedere [LICENSE.txt](./LICENSE.txt) per ulteriori informazioni.
