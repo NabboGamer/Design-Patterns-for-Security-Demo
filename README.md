@@ -24,4 +24,4 @@ Schermo Login              |  Schermo Dashboard
 
 ## License
 
-Questo progetto è concesso in licenza con la licenza MIT, vedere [LICENSE.txt](./LICENSE.txt) per ulteriori informazioni.
+Questo progetto è concesso in uso con la licenza MIT, vedere [LICENSE.txt](./LICENSE.txt) per ulteriori informazioni.
